@@ -1,16 +1,19 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import { motion } from 'framer-motion';
 
-export default function OrderSuccessPage() {
-  const searchParams = useSearchParams();
-  const orderId = searchParams.get('orderId');
+type OrderSuccessPageProps = {
+  searchParams: Promise<{ [key: string]: string | string[] }>;
+};
 
+export default async function OrderSuccessPage(props: OrderSuccessPageProps) {
+  const { searchParams } = props;
+
+  const resolvedSearchParams = await searchParams;
+  const orderId = resolvedSearchParams['orderId'];
+  
   return (
     <main className='min-h-screen'>
       <Header />
