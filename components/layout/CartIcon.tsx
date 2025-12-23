@@ -1,24 +1,24 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useCartStore } from '@/store/useCartStore'
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useCartStore } from '@/store/useCartStore';
 
 export default function CartIcon() {
-  const [mounted, setMounted] = useState(false)
-  const totalItems = useCartStore((state) => state.getTotalItems())
+  const [mounted, setMounted] = useState(false);
+  const totalItems = useCartStore((state) => state.getTotalItems());
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   return (
     <Link href='/cart'>
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className='p-2 text-gray-700 hover:text-gray-900 transition-colors relative'
+        className='p-2 hover:text-gray-900 transition-colors relative'
         aria-label='Cart'
       >
         <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -40,6 +40,5 @@ export default function CartIcon() {
         )}
       </motion.button>
     </Link>
-  )
+  );
 }
-

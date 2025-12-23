@@ -1,54 +1,54 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import AnimatedSection from '@/components/ui/AnimatedSection'
-import Avatar from '@/components/ui/Avatar'
-import { useCommentStore } from '@/store/useCommentStore'
-import { Product } from '@/types'
-import Button from '@/components/ui/Button'
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import AnimatedSection from '@/components/ui/AnimatedSection';
+import Avatar from '@/components/ui/Avatar';
+import { useCommentStore } from '@/store/useCommentStore';
+import { Product } from '@/types';
+import Button from '@/components/ui/Button';
 
 interface CommentsSectionProps {
-  product: Product
+  product: Product;
 }
 
 export default function CommentsSection({ product }: CommentsSectionProps) {
-  const comments = useCommentStore((state) => state.getCommentsByProductId(product.id))
-  const addComment = useCommentStore((state) => state.addComment)
-  const addReply = useCommentStore((state) => state.addReply)
-  const initializeComments = useCommentStore((state) => state.initializeComments)
-  const [showForm, setShowForm] = useState(false)
+  const comments = useCommentStore((state) => state.getCommentsByProductId(product.id));
+  const addComment = useCommentStore((state) => state.addComment);
+  const addReply = useCommentStore((state) => state.addReply);
+  const initializeComments = useCommentStore((state) => state.initializeComments);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    initializeComments()
-  }, [initializeComments])
-  const [replyingTo, setReplyingTo] = useState<string | null>(null)
+    initializeComments();
+  }, [initializeComments]);
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     userName: '',
     text: '',
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (replyingTo) {
       addReply(replyingTo, {
         productId: product.id,
         userId: `user-${Date.now()}`,
         userName: formData.userName || 'Anonymous',
         text: formData.text,
-      })
-      setReplyingTo(null)
+      });
+      setReplyingTo(null);
     } else {
       addComment({
         productId: product.id,
         userId: `user-${Date.now()}`,
         userName: formData.userName || 'Anonymous',
         text: formData.text,
-      })
+      });
     }
-    setFormData({ userName: '', text: '' })
-    setShowForm(false)
-  }
+    setFormData({ userName: '', text: '' });
+    setShowForm(false);
+  };
 
   return (
     <AnimatedSection className='py-12'>
@@ -74,8 +74,8 @@ export default function CommentsSection({ product }: CommentsSectionProps) {
                 <button
                   type='button'
                   onClick={() => {
-                    setReplyingTo(null)
-                    setFormData({ userName: '', text: '' })
+                    setReplyingTo(null);
+                    setFormData({ userName: '', text: '' });
                   }}
                   className='text-sm text-beige-600 hover:text-beige-700 mt-1'
                 >
@@ -110,9 +110,9 @@ export default function CommentsSection({ product }: CommentsSectionProps) {
                 type='button'
                 variant='outline'
                 onClick={() => {
-                  setShowForm(false)
-                  setReplyingTo(null)
-                  setFormData({ userName: '', text: '' })
+                  setShowForm(false);
+                  setReplyingTo(null);
+                  setFormData({ userName: '', text: '' });
                 }}
               >
                 Cancel
@@ -124,7 +124,9 @@ export default function CommentsSection({ product }: CommentsSectionProps) {
         {/* Comments List */}
         <div className='space-y-6'>
           {comments.length === 0 ? (
-            <p className='text-gray-500 text-center py-8'>No comments yet. Be the first to comment!</p>
+            <p className='text-gray-500 text-center py-8'>
+              No comments yet. Be the first to comment!
+            </p>
           ) : (
             comments.map((comment) => (
               <motion.div
@@ -145,8 +147,8 @@ export default function CommentsSection({ product }: CommentsSectionProps) {
                       </div>
                       <button
                         onClick={() => {
-                          setReplyingTo(comment.id)
-                          setShowForm(true)
+                          setReplyingTo(comment.id);
+                          setShowForm(true);
                         }}
                         className='text-sm text-beige-600 hover:text-beige-700 font-medium'
                       >
@@ -166,7 +168,9 @@ export default function CommentsSection({ product }: CommentsSectionProps) {
                         <div className='flex-1'>
                           <div className='flex items-start justify-between mb-2'>
                             <div>
-                              <h5 className='font-semibold text-gray-900 text-sm'>{reply.userName}</h5>
+                              <h5 className='font-semibold text-gray-900 text-sm'>
+                                {reply.userName}
+                              </h5>
                               <span className='text-xs text-gray-500'>
                                 {new Date(reply.date).toLocaleDateString()}
                               </span>
@@ -184,6 +188,5 @@ export default function CommentsSection({ product }: CommentsSectionProps) {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
-

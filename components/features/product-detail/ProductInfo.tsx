@@ -1,28 +1,28 @@
-'use client'
+'use client';
 
-import { Product } from '@/types'
-import { formatPrice } from '@/lib/utils'
-import { useCartStore } from '@/store/useCartStore'
-import { useWishlistStore } from '@/store/useWishlistStore'
-import Button from '@/components/ui/Button'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { Product } from '@/types';
+import { formatPrice } from '@/lib/utils';
+import { useCartStore } from '@/store/useCartStore';
+import { useWishlistStore } from '@/store/useWishlistStore';
+import Button from '@/components/ui/Button';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface ProductInfoProps {
-  product: Product
+  product: Product;
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
-  const addItem = useCartStore((state) => state.addItem)
-  const toggleItem = useWishlistStore((state) => state.toggleItem)
-  const isInWishlist = useWishlistStore((state) => state.isInWishlist(product.id))
-  const [quantity, setQuantity] = useState(1)
+  const addItem = useCartStore((state) => state.addItem);
+  const toggleItem = useWishlistStore((state) => state.toggleItem);
+  const isInWishlist = useWishlistStore((state) => state.isInWishlist(product.id));
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
-      addItem(product)
+      addItem(product);
     }
-  }
+  };
 
   return (
     <div className='space-y-6'>
@@ -100,6 +100,5 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         </ul>
       </div>
     </div>
-  )
+  );
 }
-

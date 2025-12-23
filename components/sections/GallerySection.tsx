@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import AnimatedSection from '@/components/ui/AnimatedSection'
-import { galleryImages } from '@/lib/data'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import AnimatedSection from '@/components/ui/AnimatedSection';
+import { galleryImages } from '@/lib/data';
 
 export default function GallerySection() {
   return (
@@ -45,5 +45,5 @@ export default function GallerySection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

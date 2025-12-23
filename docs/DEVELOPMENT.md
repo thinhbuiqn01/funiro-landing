@@ -4,7 +4,7 @@ Complete guide for developing and contributing to the Funiro project.
 
 ## Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or pnpm
 - Git
 
@@ -207,4 +207,3 @@ Create `.env.local` for environment-specific variables:
 - [Framer Motion](https://www.framer.com/motion/)
 - [Zustand](https://zustand-demo.pmnd.rs/)
 - [Shadcn/ui](https://ui.shadcn.com/)
-

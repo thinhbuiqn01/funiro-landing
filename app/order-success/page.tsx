@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { useSearchParams } from 'next/navigation'
-import Link from 'next/link'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import Button from '@/components/ui/Button'
-import { motion } from 'framer-motion'
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import Button from '@/components/ui/Button';
+import { motion } from 'framer-motion';
 
 export default function OrderSuccessPage() {
-  const searchParams = useSearchParams()
-  const orderId = searchParams.get('orderId')
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get('orderId');
 
   return (
     <main className='min-h-screen'>
@@ -50,9 +50,7 @@ export default function OrderSuccessPage() {
             <p className='text-lg text-gray-600 mb-2'>
               Thank you for your purchase. Your order has been received and is being processed.
             </p>
-            {orderId && (
-              <p className='text-sm text-gray-500 mb-8'>Order ID: {orderId}</p>
-            )}
+            {orderId && <p className='text-sm text-gray-500 mb-8'>Order ID: {orderId}</p>}
 
             <div className='bg-white border border-gray-200 rounded-2xl p-6 mb-8'>
               <h2 className='text-xl font-semibold text-gray-900 mb-4'>What's Next?</h2>
@@ -87,6 +85,5 @@ export default function OrderSuccessPage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
-

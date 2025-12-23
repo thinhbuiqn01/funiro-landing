@@ -4,7 +4,7 @@ export function formatPrice(price: number): string {
     currency: 'USD',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(price)
+  }).format(price);
 }
 
-export { cn } from './utils/cn'
+export { cn } from './utils/cn';

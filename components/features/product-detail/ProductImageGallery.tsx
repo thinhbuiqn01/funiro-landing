@@ -1,19 +1,16 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ProductImageGalleryProps {
-  images: string[]
-  productName: string
+  images: string[];
+  productName: string;
 }
 
-export default function ProductImageGallery({
-  images,
-  productName,
-}: ProductImageGalleryProps) {
-  const [selectedImage, setSelectedImage] = useState(images[0] || '')
+export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
+  const [selectedImage, setSelectedImage] = useState(images[0] || '');
 
   return (
     <div className='flex flex-col lg:flex-row gap-4'>
@@ -66,6 +63,5 @@ export default function ProductImageGallery({
         </AnimatePresence>
       </div>
     </div>
-  )
+  );
 }
-

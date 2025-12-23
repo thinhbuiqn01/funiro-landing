@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { useCartStore } from '@/store/useCartStore'
-import { formatPrice } from '@/lib/utils'
-import { Product } from '@/types'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useCartStore } from '@/store/useCartStore';
+import { formatPrice } from '@/lib/utils';
+import { Product } from '@/types';
 
 interface CartItemProps {
-  product: Product & { quantity: number }
+  product: Product & { quantity: number };
 }
 
 export default function CartItem({ product }: CartItemProps) {
-  const updateQuantity = useCartStore((state) => state.updateQuantity)
-  const removeItem = useCartStore((state) => state.removeItem)
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const removeItem = useCartStore((state) => state.removeItem);
 
   const handleQuantityChange = (newQuantity: number) => {
     if (newQuantity <= 0) {
-      removeItem(product.id)
+      removeItem(product.id);
     } else {
-      updateQuantity(product.id, newQuantity)
+      updateQuantity(product.id, newQuantity);
     }
-  }
+  };
 
   return (
     <motion.div
@@ -30,13 +30,7 @@ export default function CartItem({ product }: CartItemProps) {
       className='flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-2xl'
     >
       <div className='relative w-24 h-24 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0'>
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className='object-cover'
-          sizes='96px'
-        />
+        <Image src={product.image} alt={product.name} fill className='object-cover' sizes='96px' />
       </div>
 
       <div className='flex-1 min-w-0'>
@@ -95,6 +89,5 @@ export default function CartItem({ product }: CartItemProps) {
         </button>
       </div>
     </motion.div>
-  )
+  );
 }
-

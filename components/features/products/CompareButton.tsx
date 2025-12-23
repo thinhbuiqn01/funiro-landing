@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 interface CompareButtonProps {
-  className?: string
+  className?: string;
 }
 
 export default function CompareButton({ className = '' }: CompareButtonProps) {
   const handleCompare = () => {
     // TODO: Implement compare functionality
-    console.log('Compare clicked')
-  }
+    console.log('Compare clicked');
+  };
 
   return (
     <motion.button
@@ -29,6 +29,5 @@ export default function CompareButton({ className = '' }: CompareButtonProps) {
         />
       </svg>
     </motion.button>
-  )
+  );
 }
-

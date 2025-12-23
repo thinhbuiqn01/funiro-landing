@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { ShippingAddress } from '@/types/order'
+import { ShippingAddress } from '@/types/order';
 
 interface ShippingFormProps {
-  address: ShippingAddress
-  onChange: (address: ShippingAddress) => void
+  address: ShippingAddress;
+  onChange: (address: ShippingAddress) => void;
 }
 
 export default function ShippingForm({ address, onChange }: ShippingFormProps) {
   const handleChange = (field: keyof ShippingAddress, value: string) => {
-    onChange({ ...address, [field]: value })
-  }
+    onChange({ ...address, [field]: value });
+  };
 
   return (
     <div className='space-y-4'>
@@ -104,6 +104,5 @@ export default function ShippingForm({ address, onChange }: ShippingFormProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

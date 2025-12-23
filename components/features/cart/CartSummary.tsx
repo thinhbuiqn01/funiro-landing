@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import { useCartStore } from '@/store/useCartStore'
-import { formatPrice } from '@/lib/utils'
-import Button from '@/components/ui/Button'
-import Link from 'next/link'
+import { useCartStore } from '@/store/useCartStore';
+import { formatPrice } from '@/lib/utils';
+import Button from '@/components/ui/Button';
+import Link from 'next/link';
 
 interface CartSummaryProps {
-  onCheckout?: () => void
+  onCheckout?: () => void;
 }
 
 export default function CartSummary({ onCheckout }: CartSummaryProps) {
-  const items = useCartStore((state) => state.items)
-  const subtotal = useCartStore((state) => state.getTotalPrice())
-  const shipping = subtotal > 0 ? 5.0 : 0
-  const tax = subtotal * 0.1 // 10% tax
-  const total = subtotal + shipping + tax
+  const items = useCartStore((state) => state.items);
+  const subtotal = useCartStore((state) => state.getTotalPrice());
+  const shipping = subtotal > 0 ? 5.0 : 0;
+  const tax = subtotal * 0.1; // 10% tax
+  const total = subtotal + shipping + tax;
 
   if (items.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -56,6 +56,5 @@ export default function CartSummary({ onCheckout }: CartSummaryProps) {
         </Link>
       </div>
     </div>
-  )
+  );
 }
-

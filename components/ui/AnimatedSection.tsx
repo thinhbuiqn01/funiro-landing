@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
 interface AnimatedSectionProps {
-  children: ReactNode
-  className?: string
-  delay?: number
+  children: ReactNode;
+  className?: string;
+  delay?: number;
 }
 
 export default function AnimatedSection({
@@ -28,5 +28,5 @@ export default function AnimatedSection({
     >
       {children}
     </motion.div>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import AnimatedSection from '@/components/ui/AnimatedSection'
-import Button from '@/components/ui/Button'
-import { inspirationRooms } from '@/lib/data'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import AnimatedSection from '@/components/ui/AnimatedSection';
+import Button from '@/components/ui/Button';
+import { inspirationRooms } from '@/lib/data';
 
 export default function InspirationSection() {
-  const currentRoom = inspirationRooms[0]
+  const currentRoom = inspirationRooms[0];
 
   return (
     <section className='py-20 md:py-28 bg-white'>
@@ -89,5 +89,5 @@ export default function InspirationSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import AnimatedSection from '@/components/ui/AnimatedSection'
-import ProductCard from '@/components/ui/ProductCard'
-import Button from '@/components/ui/Button'
-import { products } from '@/lib/data'
+import AnimatedSection from '@/components/ui/AnimatedSection';
+import ProductCard from '@/components/ui/ProductCard';
+import Button from '@/components/ui/Button';
+import { products } from '@/lib/data';
 
 export default function ProductsSection() {
   return (
@@ -26,5 +26,5 @@ export default function ProductsSection() {
         </AnimatedSection>
       </div>
     </section>
-  )
+  );
 }

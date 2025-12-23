@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { Product } from '@/types'
-import { useWishlistStore } from '@/store/useWishlistStore'
-import { useState } from 'react'
+import { motion } from 'framer-motion';
+import { Product } from '@/types';
+import { useWishlistStore } from '@/store/useWishlistStore';
+import { useState } from 'react';
 
 interface LikeButtonProps {
-  product: Product
-  className?: string
+  product: Product;
+  className?: string;
 }
 
 export default function LikeButton({ product, className = '' }: LikeButtonProps) {
-  const toggleItem = useWishlistStore((state) => state.toggleItem)
-  const isInWishlist = useWishlistStore((state) => state.isInWishlist(product.id))
-  const [isToggling, setIsToggling] = useState(false)
+  const toggleItem = useWishlistStore((state) => state.toggleItem);
+  const isInWishlist = useWishlistStore((state) => state.isInWishlist(product.id));
+  const [isToggling, setIsToggling] = useState(false);
 
   const handleToggle = () => {
-    setIsToggling(true)
-    toggleItem(product)
-    setTimeout(() => setIsToggling(false), 300)
-  }
+    setIsToggling(true);
+    toggleItem(product);
+    setTimeout(() => setIsToggling(false), 300);
+  };
 
   return (
     <motion.button
@@ -52,6 +52,5 @@ export default function LikeButton({ product, className = '' }: LikeButtonProps)
         </svg>
       )}
     </motion.button>
-  )
+  );
 }
-

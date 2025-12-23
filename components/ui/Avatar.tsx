@@ -1,48 +1,49 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { getDefaultAvatar, getInitials } from '@/lib/utils/avatar'
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { getDefaultAvatar, getInitials } from '@/lib/utils/avatar';
 
 interface AvatarProps {
-  src?: string
-  name: string
-  size?: number
-  className?: string
+  src?: string;
+  name: string;
+  size?: number;
+  className?: string;
 }
 
 export default function Avatar({ src, name, size = 48, className = '' }: AvatarProps) {
-  const [imageError, setImageError] = useState(false)
-  const [imageSrc, setImageSrc] = useState<string | null>(null)
+  const [imageError, setImageError] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
 
-  const initials = getInitials(name)
+  const initials = getInitials(name);
   const colors = [
     { bg: '#d4c2a8', text: '#fff' },
     { bg: '#b89d7a', text: '#fff' },
     { bg: '#8b6f4f', text: '#fff' },
     { bg: '#735a42', text: '#fff' },
-  ]
-  const colorIndex = name.charCodeAt(0) % colors.length
-  const color = colors[colorIndex]
+  ];
+  const colorIndex = name.charCodeAt(0) % colors.length;
+  const color = colors[colorIndex];
 
   useEffect(() => {
     if (src && !src.startsWith('data:')) {
-      setImageSrc(src)
-      setImageError(false)
+      setImageSrc(src);
+      setImageError(false);
     } else {
-      setImageSrc(null)
+      setImageSrc(null);
     }
-  }, [src])
+  }, [src]);
 
   const handleError = () => {
-    setImageError(true)
-    setImageSrc(null)
-  }
+    setImageError(true);
+    setImageSrc(null);
+  };
 
   // If no src, error occurred, or using data URI, show default avatar
   if (!imageSrc || imageError || imageSrc.startsWith('data:')) {
-    const displaySrc = imageSrc && imageSrc.startsWith('data:') ? imageSrc : getDefaultAvatar(name, size)
-    
+    const displaySrc =
+      imageSrc && imageSrc.startsWith('data:') ? imageSrc : getDefaultAvatar(name, size);
+
     if (displaySrc.startsWith('data:')) {
       return (
         <div
@@ -56,7 +57,7 @@ export default function Avatar({ src, name, size = 48, className = '' }: AvatarP
         >
           {initials}
         </div>
-      )
+      );
     }
   }
 
@@ -87,6 +88,5 @@ export default function Avatar({ src, name, size = 48, className = '' }: AvatarP
         </div>
       )}
     </div>
-  )
+  );
 }
-

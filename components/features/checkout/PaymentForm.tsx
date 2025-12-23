@@ -1,41 +1,41 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { PaymentInfo } from '@/types/order'
+import { useState } from 'react';
+import { PaymentInfo } from '@/types/order';
 
 interface PaymentFormProps {
-  paymentInfo: PaymentInfo
-  onChange: (info: PaymentInfo) => void
+  paymentInfo: PaymentInfo;
+  onChange: (info: PaymentInfo) => void;
 }
 
 export default function PaymentForm({ paymentInfo, onChange }: PaymentFormProps) {
   const [selectedMethod, setSelectedMethod] = useState<PaymentInfo['paymentMethod']>(
     paymentInfo.paymentMethod || 'card'
-  )
+  );
 
   const handleChange = (field: keyof PaymentInfo, value: string) => {
-    onChange({ ...paymentInfo, [field]: value })
-  }
+    onChange({ ...paymentInfo, [field]: value });
+  };
 
   const handleMethodChange = (method: PaymentInfo['paymentMethod']) => {
-    setSelectedMethod(method)
-    onChange({ ...paymentInfo, paymentMethod: method })
-  }
+    setSelectedMethod(method);
+    onChange({ ...paymentInfo, paymentMethod: method });
+  };
 
   const formatCardNumber = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
-    const matches = v.match(/\d{4,16}/g)
-    const match = (matches && matches[0]) || ''
-    const parts = []
+    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    const matches = v.match(/\d{4,16}/g);
+    const match = (matches && matches[0]) || '';
+    const parts = [];
     for (let i = 0, len = match.length; i < len; i += 4) {
-      parts.push(match.substring(i, i + 4))
+      parts.push(match.substring(i, i + 4));
     }
     if (parts.length) {
-      return parts.join(' ')
+      return parts.join(' ');
     } else {
-      return v
+      return v;
     }
-  }
+  };
 
   return (
     <div className='space-y-6'>
@@ -121,11 +121,11 @@ export default function PaymentForm({ paymentInfo, onChange }: PaymentFormProps)
                 type='text'
                 value={paymentInfo.expiryDate}
                 onChange={(e) => {
-                  let value = e.target.value.replace(/\D/g, '')
+                  let value = e.target.value.replace(/\D/g, '');
                   if (value.length >= 2) {
-                    value = value.substring(0, 2) + '/' + value.substring(2, 4)
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
                   }
-                  handleChange('expiryDate', value)
+                  handleChange('expiryDate', value);
                 }}
                 placeholder='MM/YY'
                 maxLength={5}
@@ -138,7 +138,9 @@ export default function PaymentForm({ paymentInfo, onChange }: PaymentFormProps)
               <input
                 type='text'
                 value={paymentInfo.cvv}
-                onChange={(e) => handleChange('cvv', e.target.value.replace(/\D/g, '').substring(0, 3))}
+                onChange={(e) =>
+                  handleChange('cvv', e.target.value.replace(/\D/g, '').substring(0, 3))
+                }
                 placeholder='123'
                 maxLength={3}
                 className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beige-600 focus:border-transparent'
@@ -170,6 +172,5 @@ export default function PaymentForm({ paymentInfo, onChange }: PaymentFormProps)
         </div>
       )}
     </div>
-  )
+  );
 }
-

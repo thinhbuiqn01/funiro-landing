@@ -1,12 +1,11 @@
 export interface InspirationRoom {
-  id: string
-  title: string
-  subtitle: string
-  image: string
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
 }
 
 export interface GalleryImage {
-  id: string
-  image: string
+  id: string;
+  image: string;
 }
-

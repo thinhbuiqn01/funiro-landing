@@ -1,5 +1,5 @@
-import { Review, Comment } from '@/types'
-import { getAvatarUrl } from '@/lib/utils/avatar'
+import { Review, Comment } from '@/types';
+import { getAvatarUrl } from '@/lib/utils/avatar';
 
 export const initialReviews: Review[] = [
   {
@@ -10,7 +10,7 @@ export const initialReviews: Review[] = [
     avatar: getAvatarUrl('Sarah Johnson'),
     rating: 5,
     comment:
-      'Absolutely love this chair! It\'s comfortable, stylish, and perfect for my home office. The quality is excellent and it arrived quickly.',
+      "Absolutely love this chair! It's comfortable, stylish, and perfect for my home office. The quality is excellent and it arrived quickly.",
     date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
   },
   {
@@ -57,7 +57,7 @@ export const initialReviews: Review[] = [
       'Exceeded my expectations! The chair is beautiful, well-made, and incredibly comfortable. Customer service was also excellent.',
     date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
   },
-]
+];
 
 export const initialComments: Comment[] = [
   {
@@ -116,7 +116,7 @@ export const initialComments: Comment[] = [
     userId: 'user-10',
     userName: 'Jennifer Lee',
     avatar: getAvatarUrl('Jennifer Lee'),
-    text: 'What\'s the weight capacity for this chair?',
+    text: "What's the weight capacity for this chair?",
     date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
     replies: [],
   },
@@ -126,7 +126,7 @@ export const initialComments: Comment[] = [
     userId: 'user-11',
     userName: 'Christopher Brown',
     avatar: getAvatarUrl('Christopher Brown'),
-    text: 'Can I return this if it doesn\'t fit my space? What\'s the return policy?',
+    text: "Can I return this if it doesn't fit my space? What's the return policy?",
     date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(),
     replies: [],
   },
@@ -186,7 +186,7 @@ export const initialComments: Comment[] = [
     userId: 'user-16',
     userName: 'Rachel Green',
     avatar: getAvatarUrl('Rachel Green'),
-    text: 'The chair looks amazing in person! The photos don\'t do it justice. Highly recommend!',
+    text: "The chair looks amazing in person! The photos don't do it justice. Highly recommend!",
     date: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(),
     replies: [
       {
@@ -200,5 +200,4 @@ export const initialComments: Comment[] = [
       },
     ],
   },
-]
-
+];

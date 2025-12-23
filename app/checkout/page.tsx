@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import ShippingForm from '@/components/checkout/ShippingForm'
-import PaymentForm from '@/components/checkout/PaymentForm'
-import { useCartStore } from '@/store/useCartStore'
-import { useOrderStore } from '@/store/useOrderStore'
-import { ShippingAddress, PaymentInfo, OrderItem } from '@/types/order'
-import { formatPrice } from '@/lib/utils'
-import Button from '@/components/ui/Button'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import ShippingForm from '@/components/features/checkout/ShippingForm';
+import PaymentForm from '@/components/features/checkout/PaymentForm';
+import { useCartStore } from '@/store/useCartStore';
+import { useOrderStore } from '@/store/useOrderStore';
+import { ShippingAddress, PaymentInfo, OrderItem } from '@/types/order';
+import { formatPrice } from '@/lib/utils';
+import Button from '@/components/ui/Button';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function CheckoutPage() {
-  const router = useRouter()
-  const items = useCartStore((state) => state.items)
-  const clearCart = useCartStore((state) => state.clearCart)
-  const subtotal = useCartStore((state) => state.getTotalPrice())
-  const addOrder = useOrderStore((state) => state.addOrder)
-  const [isProcessing, setIsProcessing] = useState(false)
+  const router = useRouter();
+  const items = useCartStore((state) => state.items);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const subtotal = useCartStore((state) => state.getTotalPrice());
+  const addOrder = useOrderStore((state) => state.addOrder);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     fullName: '',
@@ -31,7 +31,7 @@ export default function CheckoutPage() {
     state: '',
     zipCode: '',
     country: 'USA',
-  })
+  });
 
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
     cardNumber: '',
@@ -39,18 +39,18 @@ export default function CheckoutPage() {
     expiryDate: '',
     cvv: '',
     paymentMethod: 'card',
-  })
+  });
 
-  const shipping = subtotal > 0 ? 5.0 : 0
-  const tax = subtotal * 0.1
-  const total = subtotal + shipping + tax
+  const shipping = subtotal > 0 ? 5.0 : 0;
+  const tax = subtotal * 0.1;
+  const total = subtotal + shipping + tax;
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsProcessing(true)
+    e.preventDefault();
+    setIsProcessing(true);
 
     // Simulate payment processing
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const orderItems: OrderItem[] = items.map((item) => ({
       productId: item.id,
@@ -58,7 +58,7 @@ export default function CheckoutPage() {
       price: item.price,
       quantity: item.quantity,
       image: item.image,
-    }))
+    }));
 
     addOrder({
       items: orderItems,
@@ -69,12 +69,12 @@ export default function CheckoutPage() {
       status: 'processing',
       paymentMethod: paymentInfo.paymentMethod,
       shippingAddress,
-    })
+    });
 
-    clearCart()
-    setIsProcessing(false)
-    router.push(`/order-success?orderId=${Date.now()}`)
-  }
+    clearCart();
+    setIsProcessing(false);
+    router.push(`/order-success?orderId=${Date.now()}`);
+  };
 
   if (items.length === 0) {
     return (
@@ -93,7 +93,7 @@ export default function CheckoutPage() {
         </div>
         <Footer />
       </main>
-    )
+    );
   }
 
   return (
@@ -174,12 +174,7 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <Button
-                    type='submit'
-                    size='lg'
-                    className='w-full'
-                    disabled={isProcessing}
-                  >
+                  <Button type='submit' size='lg' className='w-full' disabled={isProcessing}>
                     {isProcessing ? 'Processing...' : `Pay ${formatPrice(total)}`}
                   </Button>
                 </motion.div>
@@ -190,6 +185,5 @@ export default function CheckoutPage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
-

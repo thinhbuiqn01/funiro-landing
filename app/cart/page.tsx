@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import CartItem from '@/components/cart/CartItem'
-import CartSummary from '@/components/cart/CartSummary'
-import { useCartStore } from '@/store/useCartStore'
-import Link from 'next/link'
-import Button from '@/components/ui/Button'
-import { useRouter } from 'next/navigation'
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import CartItem from '@/components/features/cart/CartItem';
+import CartSummary from '@/components/features/cart/CartSummary';
+import { useCartStore } from '@/store/useCartStore';
+import Link from 'next/link';
+import Button from '@/components/ui/Button';
+import { useRouter } from 'next/navigation';
 
 function CartContent() {
-  const items = useCartStore((state) => state.items)
-  const router = useRouter()
+  const items = useCartStore((state) => state.items);
+  const router = useRouter();
 
   const handleCheckout = () => {
-    router.push('/checkout')
-  }
+    router.push('/checkout');
+  };
 
   if (items.length === 0) {
     return (
@@ -36,12 +36,14 @@ function CartContent() {
           </svg>
         </div>
         <h2 className='text-3xl font-bold text-gray-900 mb-4'>Your cart is empty</h2>
-        <p className='text-gray-600 mb-8'>Looks like you haven't added anything to your cart yet.</p>
+        <p className='text-gray-600 mb-8'>
+          Looks like you haven't added anything to your cart yet.
+        </p>
         <Link href='/#products'>
           <Button size='lg'>Start Shopping</Button>
         </Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -59,7 +61,7 @@ function CartContent() {
         <CartSummary onCheckout={handleCheckout} />
       </div>
     </div>
-  )
+  );
 }
 
 export default function CartPage() {
@@ -73,6 +75,5 @@ export default function CartPage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
-

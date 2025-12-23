@@ -1,6 +1,6 @@
-const https = require('https')
-const fs = require('fs')
-const path = require('path')
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
 
 const images = [
   // Products
@@ -84,60 +84,59 @@ const images = [
     url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop',
     filename: 'hero/hero-bg.jpg',
   },
-]
+];
 
 function downloadImage(url, filepath) {
   return new Promise((resolve, reject) => {
-    const dir = path.dirname(filepath)
+    const dir = path.dirname(filepath);
     if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true })
+      fs.mkdirSync(dir, { recursive: true });
     }
 
-    const file = fs.createWriteStream(filepath)
+    const file = fs.createWriteStream(filepath);
     https
       .get(url, (response) => {
         if (response.statusCode === 200) {
-          response.pipe(file)
+          response.pipe(file);
           file.on('finish', () => {
-            file.close()
-            console.log(`Downloaded: ${filepath}`)
-            resolve()
-          })
+            file.close();
+            console.log(`Downloaded: ${filepath}`);
+            resolve();
+          });
         } else {
-          file.close()
-          fs.unlinkSync(filepath)
-          reject(new Error(`Failed to download: ${url}`))
+          file.close();
+          fs.unlinkSync(filepath);
+          reject(new Error(`Failed to download: ${url}`));
         }
       })
       .on('error', (err) => {
-        file.close()
+        file.close();
         if (fs.existsSync(filepath)) {
-          fs.unlinkSync(filepath)
+          fs.unlinkSync(filepath);
         }
-        reject(err)
-      })
-  })
+        reject(err);
+      });
+  });
 }
 
 async function downloadAll() {
-  const publicDir = path.join(__dirname, '..', 'public', 'images')
+  const publicDir = path.join(__dirname, '..', 'public', 'images');
   if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir, { recursive: true })
+    fs.mkdirSync(publicDir, { recursive: true });
   }
 
-  console.log('Starting image downloads...\n')
+  console.log('Starting image downloads...\n');
 
   for (const image of images) {
-    const filepath = path.join(publicDir, image.filename)
+    const filepath = path.join(publicDir, image.filename);
     try {
-      await downloadImage(image.url, filepath)
+      await downloadImage(image.url, filepath);
     } catch (error) {
-      console.error(`Error downloading ${image.filename}:`, error.message)
+      console.error(`Error downloading ${image.filename}:`, error.message);
     }
   }
 
-  console.log('\nAll downloads completed!')
+  console.log('\nAll downloads completed!');
 }
 
-downloadAll()
-
+downloadAll();

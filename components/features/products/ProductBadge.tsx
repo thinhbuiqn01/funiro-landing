@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { Product } from '@/types'
+import { Product } from '@/types';
 
 interface ProductBadgeProps {
-  badge: Product['badge']
-  discount?: number
+  badge: Product['badge'];
+  discount?: number;
 }
 
 export default function ProductBadge({ badge, discount }: ProductBadgeProps) {
-  if (!badge) return null
+  if (!badge) return null;
 
   return (
     <div
@@ -18,6 +18,5 @@ export default function ProductBadge({ badge, discount }: ProductBadgeProps) {
     >
       {badge === 'new' ? 'New' : `-${discount}%`}
     </div>
-  )
+  );
 }
-

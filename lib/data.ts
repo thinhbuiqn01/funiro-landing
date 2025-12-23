@@ -1,4 +1,4 @@
-import { Product, Category, InspirationRoom, GalleryImage } from '@/types'
+import { Product, Category, InspirationRoom, GalleryImage } from '@/types';
 
 export const products: Product[] = [
   {
@@ -77,7 +77,7 @@ export const products: Product[] = [
     image: '/images/products/product-3.jpg',
     badge: 'new',
   },
-]
+];
 
 export const categories: Category[] = [
   {
@@ -95,7 +95,7 @@ export const categories: Category[] = [
     name: 'Bedroom',
     image: '/images/categories/category-bedroom.jpg',
   },
-]
+];
 
 export const inspirationRooms: InspirationRoom[] = [
   {
@@ -110,7 +110,7 @@ export const inspirationRooms: InspirationRoom[] = [
     subtitle: 'Modern Elegance',
     image: '/images/inspiration/inspiration-2.jpg',
   },
-]
+];
 
 export const galleryImages: GalleryImage[] = [
   {
@@ -149,4 +149,4 @@ export const galleryImages: GalleryImage[] = [
     id: '9',
     image: '/images/gallery/gallery-9.jpg',
   },
-]
+];

@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { Product } from '@/types'
-import { shareProduct } from '@/lib/utils/share'
-import { useState } from 'react'
+import { motion } from 'framer-motion';
+import { Product } from '@/types';
+import { shareProduct } from '@/lib/utils/share';
+import { useState } from 'react';
 
 interface ShareButtonProps {
-  product: Product
-  className?: string
+  product: Product;
+  className?: string;
 }
 
 export default function ShareButton({ product, className = '' }: ShareButtonProps) {
-  const [isSharing, setIsSharing] = useState(false)
+  const [isSharing, setIsSharing] = useState(false);
 
   const handleShare = async () => {
-    setIsSharing(true)
-    await shareProduct(product)
-    setTimeout(() => setIsSharing(false), 500)
-  }
+    setIsSharing(true);
+    await shareProduct(product);
+    setTimeout(() => setIsSharing(false), 500);
+  };
 
   return (
     <motion.button
@@ -29,12 +29,7 @@ export default function ShareButton({ product, className = '' }: ShareButtonProp
       aria-label='Share'
     >
       {isSharing ? (
-        <svg
-          className='w-5 h-5 animate-spin'
-          fill='none'
-          stroke='currentColor'
-          viewBox='0 0 24 24'
-        >
+        <svg className='w-5 h-5 animate-spin' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
           <path
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -53,6 +48,5 @@ export default function ShareButton({ product, className = '' }: ShareButtonProp
         </svg>
       )}
     </motion.button>
-  )
+  );
 }
-

@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import { Product } from '@/types'
-import ProductBadge from './ProductBadge'
+import Image from 'next/image';
+import { Product } from '@/types';
+import ProductBadge from './ProductBadge';
 
 interface ProductImageProps {
-  product: Product
+  product: Product;
 }
 
 export default function ProductImage({ product }: ProductImageProps) {
@@ -20,6 +20,5 @@ export default function ProductImage({ product }: ProductImageProps) {
       />
       <ProductBadge badge={product.badge} discount={product.discount} />
     </div>
-  )
+  );
 }
-

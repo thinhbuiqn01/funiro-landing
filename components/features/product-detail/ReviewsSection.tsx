@@ -1,45 +1,45 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import AnimatedSection from '@/components/ui/AnimatedSection'
-import Button from '@/components/ui/Button'
-import Avatar from '@/components/ui/Avatar'
-import { useReviewStore } from '@/store/useReviewStore'
-import { Product } from '@/types'
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import AnimatedSection from '@/components/ui/AnimatedSection';
+import Button from '@/components/ui/Button';
+import Avatar from '@/components/ui/Avatar';
+import { useReviewStore } from '@/store/useReviewStore';
+import { Product } from '@/types';
 
 interface ReviewsSectionProps {
-  product: Product
+  product: Product;
 }
 
 export default function ReviewsSection({ product }: ReviewsSectionProps) {
-  const reviews = useReviewStore((state) => state.getReviewsByProductId(product.id))
-  const averageRating = useReviewStore((state) => state.getAverageRating(product.id))
-  const addReview = useReviewStore((state) => state.addReview)
-  const initializeReviews = useReviewStore((state) => state.initializeReviews)
-  const [showForm, setShowForm] = useState(false)
+  const reviews = useReviewStore((state) => state.getReviewsByProductId(product.id));
+  const averageRating = useReviewStore((state) => state.getAverageRating(product.id));
+  const addReview = useReviewStore((state) => state.addReview);
+  const initializeReviews = useReviewStore((state) => state.initializeReviews);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    initializeReviews()
-  }, [initializeReviews])
+    initializeReviews();
+  }, [initializeReviews]);
   const [formData, setFormData] = useState({
     userName: '',
     rating: 5,
     comment: '',
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     addReview({
       productId: product.id,
       userId: `user-${Date.now()}`,
       userName: formData.userName || 'Anonymous',
       rating: formData.rating,
       comment: formData.comment,
-    })
-    setFormData({ userName: '', rating: 5, comment: '' })
-    setShowForm(false)
-  }
+    });
+    setFormData({ userName: '', rating: 5, comment: '' });
+    setShowForm(false);
+  };
 
   const StarRating = ({ rating }: { rating: number }) => {
     return (
@@ -57,8 +57,8 @@ export default function ReviewsSection({ product }: ReviewsSectionProps) {
           </svg>
         ))}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <AnimatedSection className='py-12'>
@@ -133,8 +133,8 @@ export default function ReviewsSection({ product }: ReviewsSectionProps) {
                 type='button'
                 variant='outline'
                 onClick={() => {
-                  setShowForm(false)
-                  setFormData({ userName: '', rating: 5, comment: '' })
+                  setShowForm(false);
+                  setFormData({ userName: '', rating: 5, comment: '' });
                 }}
               >
                 Cancel
@@ -146,7 +146,9 @@ export default function ReviewsSection({ product }: ReviewsSectionProps) {
         {/* Reviews List */}
         <div className='space-y-6'>
           {reviews.length === 0 ? (
-            <p className='text-gray-500 text-center py-8'>No reviews yet. Be the first to review!</p>
+            <p className='text-gray-500 text-center py-8'>
+              No reviews yet. Be the first to review!
+            </p>
           ) : (
             reviews.map((review) => (
               <motion.div
@@ -176,6 +178,5 @@ export default function ReviewsSection({ product }: ReviewsSectionProps) {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
-

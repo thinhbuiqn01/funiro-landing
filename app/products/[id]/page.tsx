@@ -1,23 +1,23 @@
-import { notFound } from 'next/navigation'
-import { products } from '@/lib/data'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import ProductImageGallery from '@/components/product-detail/ProductImageGallery'
-import ProductInfo from '@/components/product-detail/ProductInfo'
-import VideoDemo from '@/components/product-detail/VideoDemo'
-import ReviewsSection from '@/components/product-detail/ReviewsSection'
-import CommentsSection from '@/components/product-detail/CommentsSection'
+import { notFound } from 'next/navigation';
+import { products } from '@/lib/data';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import ProductImageGallery from '@/components/features/product-detail/ProductImageGallery';
+import ProductInfo from '@/components/features/product-detail/ProductInfo';
+import VideoDemo from '@/components/features/product-detail/VideoDemo';
+import ReviewsSection from '@/components/features/product-detail/ReviewsSection';
+import CommentsSection from '@/components/features/product-detail/CommentsSection';
 
 interface ProductDetailPageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
-  const { id } = await params
-  const product = products.find((p) => p.id === id)
+  const { id } = await params;
+  const product = products.find((p) => p.id === id);
 
   if (!product) {
-    notFound()
+    notFound();
   }
 
   const productImages = product.images || [
@@ -26,7 +26,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     product.image,
     product.image,
     product.image,
-  ]
+  ];
 
   return (
     <main className='min-h-screen'>
@@ -51,5 +51,5 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       </div>
       <Footer />
     </main>
-  )
+  );
 }

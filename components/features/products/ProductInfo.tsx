@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { Product } from '@/types'
-import { formatPrice } from '@/lib/utils'
+import { Product } from '@/types';
+import { formatPrice } from '@/lib/utils';
 
 interface ProductInfoProps {
-  product: Product
+  product: Product;
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
@@ -21,6 +21,5 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
-

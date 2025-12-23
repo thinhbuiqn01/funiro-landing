@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import AnimatedSection from '@/components/ui/AnimatedSection'
+import { motion } from 'framer-motion';
+import AnimatedSection from '@/components/ui/AnimatedSection';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     links: [
@@ -18,7 +18,7 @@ export default function Footer() {
       { name: 'Returns', href: '#' },
       { name: 'Privacy Policies', href: '#' },
     ],
-  }
+  };
 
   return (
     <footer className='bg-white border-t border-gray-200'>
@@ -97,5 +97,5 @@ export default function Footer() {
         </div>
       </AnimatedSection>
     </footer>
-  )
+  );
 }

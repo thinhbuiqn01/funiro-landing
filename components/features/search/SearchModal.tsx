@@ -1,73 +1,73 @@
-'use client'
+'use client';
 
-import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import { products } from '@/lib/data'
-import { formatPrice } from '@/lib/utils'
-import { Product } from '@/types'
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { products } from '@/lib/data';
+import { formatPrice } from '@/lib/utils';
+import { Product } from '@/types';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from '@/components/ui/dialog';
 
 interface SearchModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<Product[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (isOpen) {
       // Focus input when modal opens
       setTimeout(() => {
-        inputRef.current?.focus()
-      }, 100)
+        inputRef.current?.focus();
+      }, 100);
     } else {
       // Clear search when modal closes
-      setSearchQuery('')
-      setSearchResults([])
+      setSearchQuery('');
+      setSearchResults([]);
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   useEffect(() => {
     if (!searchQuery.trim()) {
-      setSearchResults([])
-      return
+      setSearchResults([]);
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     // Simulate search delay for better UX
     const timer = setTimeout(() => {
-      const query = searchQuery.toLowerCase().trim()
+      const query = searchQuery.toLowerCase().trim();
       const filtered = products.filter(
         (product) =>
           product.name.toLowerCase().includes(query) ||
           product.description.toLowerCase().includes(query)
-      )
-      setSearchResults(filtered)
-      setIsLoading(false)
-    }, 300)
+      );
+      setSearchResults(filtered);
+      setIsLoading(false);
+    }, 300);
 
     return () => {
-      clearTimeout(timer)
-      setIsLoading(false)
-    }
-  }, [searchQuery])
+      clearTimeout(timer);
+      setIsLoading(false);
+    };
+  }, [searchQuery]);
 
   const handleProductClick = (productId: string) => {
-    router.push(`/products/${productId}`)
-    onClose()
-  }
+    router.push(`/products/${productId}`);
+    onClose();
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -248,5 +248,5 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

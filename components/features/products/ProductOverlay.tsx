@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { Product } from '@/types'
-import AddToCartButton from './AddToCartButton'
-import ShareButton from './ShareButton'
-import LikeButton from './LikeButton'
-import CompareButton from './CompareButton'
+import { motion } from 'framer-motion';
+import { Product } from '@/types';
+import AddToCartButton from './AddToCartButton';
+import ShareButton from './ShareButton';
+import LikeButton from './LikeButton';
+import CompareButton from './CompareButton';
 
 interface ProductOverlayProps {
-  product: Product
+  product: Product;
 }
 
 export default function ProductOverlay({ product }: ProductOverlayProps) {
@@ -25,6 +25,5 @@ export default function ProductOverlay({ product }: ProductOverlayProps) {
         <LikeButton product={product} />
       </div>
     </motion.div>
-  )
+  );
 }
-

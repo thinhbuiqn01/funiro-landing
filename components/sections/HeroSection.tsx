@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Button from '@/components/ui/Button'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Button from '@/components/ui/Button';
 
 export default function HeroSection() {
   return (
@@ -70,5 +70,5 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

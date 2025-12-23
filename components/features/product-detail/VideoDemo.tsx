@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import AnimatedSection from '@/components/ui/AnimatedSection'
+import { motion } from 'framer-motion';
+import AnimatedSection from '@/components/ui/AnimatedSection';
 
 interface VideoDemoProps {
-  videoUrl?: string
-  productName: string
+  videoUrl?: string;
+  productName: string;
 }
 
 export default function VideoDemo({ videoUrl, productName }: VideoDemoProps) {
-  if (!videoUrl) return null
+  if (!videoUrl) return null;
 
   // Extract video ID from YouTube URL
   const getVideoId = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
-    const match = url.match(regExp)
-    return match && match[2].length === 11 ? match[2] : null
-  }
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return match && match[2].length === 11 ? match[2] : null;
+  };
 
-  const videoId = getVideoId(videoUrl)
-  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : videoUrl
+  const videoId = getVideoId(videoUrl);
+  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : videoUrl;
 
   return (
     <AnimatedSection className='py-12'>
@@ -36,6 +36,5 @@ export default function VideoDemo({ videoUrl, productName }: VideoDemoProps) {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
-

@@ -41,11 +41,13 @@ app/
 All React components organized by feature.
 
 ### Layout Components (`components/layout/`)
+
 - `Header.tsx` - Main navigation header
 - `Footer.tsx` - Site footer
 - `CartIcon.tsx` - Cart icon with badge
 
 ### Section Components (`components/sections/`)
+
 - `HeroSection.tsx` - Hero banner section
 - `BrowseRangeSection.tsx` - Category browsing
 - `ProductsSection.tsx` - Product grid
@@ -53,6 +55,7 @@ All React components organized by feature.
 - `GallerySection.tsx` - Image gallery
 
 ### Product Components (`components/products/`)
+
 - `ProductBadge.tsx` - New/Discount badge
 - `ProductImage.tsx` - Product image with badge
 - `ProductOverlay.tsx` - Hover overlay with actions
@@ -63,6 +66,7 @@ All React components organized by feature.
 - `CompareButton.tsx` - Compare product button
 
 ### Product Detail Components (`components/product-detail/`)
+
 - `ProductImageGallery.tsx` - Image gallery with thumbnails
 - `ProductInfo.tsx` - Product details and actions
 - `VideoDemo.tsx` - Video embed section
@@ -70,17 +74,21 @@ All React components organized by feature.
 - `CommentsSection.tsx` - Comments with replies
 
 ### Cart Components (`components/cart/`)
+
 - `CartItem.tsx` - Individual cart item
 - `CartSummary.tsx` - Order summary sidebar
 
 ### Checkout Components (`components/checkout/`)
+
 - `ShippingForm.tsx` - Shipping address form
 - `PaymentForm.tsx` - Payment method selection
 
 ### Search Components (`components/search/`)
+
 - `SearchModal.tsx` - Search modal (Shadcn Dialog)
 
 ### UI Components (`components/ui/`)
+
 - `AnimatedSection.tsx` - Reusable animated wrapper
 - `Avatar.tsx` - Avatar component with fallback
 - `Button.tsx` - Reusable button component
@@ -101,6 +109,7 @@ store/
 ```
 
 ### Store Features
+
 - All stores use `persist` middleware
 - Data saved to localStorage
 - Type-safe with TypeScript
@@ -177,4 +186,3 @@ scripts/
 3. **Separation of Concerns**: Layout, sections, and UI separated
 4. **Type Safety**: All components typed with TypeScript
 5. **Single Responsibility**: Each component has one purpose
-

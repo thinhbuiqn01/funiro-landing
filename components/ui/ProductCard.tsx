@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { Product } from '@/types'
-import ProductImage from '@/components/products/ProductImage'
-import ProductOverlay from '@/components/products/ProductOverlay'
-import ProductInfo from '@/components/products/ProductInfo'
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Product } from '@/types';
+import ProductImage from '@/components/features/products/ProductImage';
+import ProductOverlay from '@/components/features/products/ProductOverlay';
+import ProductInfo from '@/components/features/products/ProductInfo';
 
 interface ProductCardProps {
-  product: Product
-  index?: number
+  product: Product;
+  index?: number;
 }
 
 export default function ProductCard({ product, index = 0 }: ProductCardProps) {
@@ -34,5 +34,5 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         <ProductInfo product={product} />
       </Link>
     </motion.div>
-  )
+  );
 }

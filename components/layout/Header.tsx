@@ -1,57 +1,57 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import CartIcon from './CartIcon'
-import SearchModal from '@/components/search/SearchModal'
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import CartIcon from './CartIcon';
+import SearchModal from '../features/search/SearchModal';
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.includes('#')) {
-      const hash = href.split('#')[1]
+      const hash = href.split('#')[1];
       if (hash) {
-        e.preventDefault()
+        e.preventDefault();
         // If we're on a different page, navigate first then scroll
         if (pathname !== '/') {
-          window.location.href = href
-          return
+          window.location.href = href;
+          return;
         }
         // If on home page, just scroll
-        const element = document.getElementById(hash)
+        const element = document.getElementById(hash);
         if (element) {
-          const headerOffset = 80
-          const elementPosition = element.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth',
-          })
+          });
         }
       }
     }
-  }
+  };
 
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Shop', href: '/#products' },
     { name: 'About', href: '/#about' },
     { name: 'Contact', href: '/#contact' },
-  ]
+  ];
 
   return (
     <motion.header
@@ -59,7 +59,7 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+        isScrolled ? 'bg-white shadow-md text-gray-700' : 'bg-transparent'
       }`}
     >
       <nav className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -67,7 +67,7 @@ export default function Header() {
           {/* Logo */}
           <Link href='/'>
             <motion.div
-              className='text-2xl font-bold text-gray-900 flex items-center gap-2 cursor-pointer'
+              className='text-2xl font-bold flex items-center gap-2 cursor-pointer'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -79,11 +79,15 @@ export default function Header() {
           {/* Navigation Links */}
           <div className='hidden md:flex items-center gap-8'>
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href === '/' && pathname === '/')
+              const isActive = pathname === link.href || (link.href === '/' && pathname === '/');
               return (
-                <Link key={link.name} href={link.href} onClick={(e) => handleNavClick(e, link.href)}>
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                >
                   <motion.div
-                    className='relative text-gray-700 font-medium hover:text-gray-900 transition-colors cursor-pointer'
+                    className='relative font-medium transition-colors cursor-pointer'
                     whileHover={{ y: -2 }}
                   >
                     {link.name}
@@ -95,7 +99,7 @@ export default function Header() {
                     />
                   </motion.div>
                 </Link>
-              )
+              );
             })}
           </div>
 
@@ -104,7 +108,7 @@ export default function Header() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className='p-2 text-gray-700 hover:text-gray-900 transition-colors'
+              className='p-2 hover:text-gray-900 transition-colors'
               aria-label='Account'
             >
               <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -120,7 +124,7 @@ export default function Header() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsSearchOpen(true)}
-              className='p-2 text-gray-700 hover:text-gray-900 transition-colors'
+              className='p-2 hover:text-gray-900 transition-colors'
               aria-label='Search'
             >
               <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -135,7 +139,7 @@ export default function Header() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className='p-2 text-gray-700 hover:text-gray-900 transition-colors'
+              className='p-2 hover:text-gray-900 transition-colors'
               aria-label='Wishlist'
             >
               <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -155,5 +159,5 @@ export default function Header() {
       {/* Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </motion.header>
-  )
+  );
 }
